@@ -29,11 +29,51 @@ Enemy.prototype.render = function() {
 let Player=function(x,y){
   this.x=x;
   this.y=y;
+  this.height=83;
+  this.width=101;
   this.sprite = 'images/char-boy.png';
-}
+};
 
 Player.prototype.update = function(dt) {
  };
+
+Player.prototype.handleInput=function(k){
+    switch(k){
+      case 'left':
+      if(this.x===(200)-(this.width*2)){
+        break;
+        }
+      else{
+        this.x-=this.width;
+        break;
+      }
+      case 'right':
+      if(this.x===(200)+(this.width*2)){
+        break;
+      }
+        else{
+          this.x+=this.width;
+          break;
+        }
+      case 'up' :
+      if(this.y===(366)-(5*this.height)){
+      break;
+      }
+        else{
+        this.y-=this.height;
+        break;
+        }
+      case 'down' :
+      if(this.y===366){
+      break;
+    }
+      else{
+        this.y+=this.height;
+        break;
+      }
+      }
+};
+
 
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -45,7 +85,7 @@ const roach1 = new Enemy();
 const allEnemies = [];
 allEnemies.push(roach1);
 // Place the player object in a variable called player
-const player = new Player(200,370);
+const player = new Player(200,366);
 
 
 
