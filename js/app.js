@@ -1,9 +1,12 @@
 // Enemies our player must avoid
-let Enemy = function() {
+let Enemy = function(x,y,speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
-    this.x=0;
-    this.y=0;
+    this.x=x;
+    this.y=y;
+    this.end=505;
+    this.start=-99;
+    this.speed=speed;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
@@ -15,6 +18,12 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    if(this.x<this.end){
+      this.x+=15*this.speed*dt
+    }
+    else{
+      this.x=this.start;
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -27,6 +36,8 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 let Player=function(x,y){
+  this.startx=x;
+  this.starty=y;
   this.x=x;
   this.y=y;
   this.height=83;
@@ -34,7 +45,7 @@ let Player=function(x,y){
   this.sprite = 'images/char-boy.png';
 };
 
-Player.prototype.update = function(dt) {
+Player.prototype.update = function() {
  };
 
 Player.prototype.handleInput=function(k){
@@ -56,7 +67,7 @@ Player.prototype.handleInput=function(k){
           break;
         }
       case 'up' :
-      if(this.y===(366)-(5*this.height)){
+      if(this.y===(394)-(5*this.height)){
       break;
       }
         else{
@@ -64,7 +75,7 @@ Player.prototype.handleInput=function(k){
         break;
         }
       case 'down' :
-      if(this.y===366){
+      if(this.y===394){
       break;
     }
       else{
@@ -81,11 +92,21 @@ Player.prototype.render = function() {
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-const roach1 = new Enemy();
-const allEnemies = [];
+const roach1 = new Enemy(-159,62,30);
+const roach2 = new Enemy(-200,145,60);
+const roach3 = new Enemy(-99,228,50);
+const roach4 = new Enemy((-99*2.5),228,40);
+const roach5 = new Enemy(-139,62,20);
+
+var allEnemies = [];
 allEnemies.push(roach1);
+allEnemies.push(roach2);
+allEnemies.push(roach3);
+allEnemies.push(roach4);
+allEnemies.push(roach5);
+
 // Place the player object in a variable called player
-const player = new Player(200,366);
+const player = new Player(200,394);
 
 
 
