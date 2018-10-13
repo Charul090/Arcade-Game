@@ -26,9 +26,9 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-let Player=function(){
-  this.x=0;
-  this.y=0;
+let Player=function(x,y){
+  this.x=x;
+  this.y=y;
   this.sprite = 'images/char-boy.png';
 }
 
@@ -45,7 +45,7 @@ const roach1 = new Enemy();
 const allEnemies = [];
 allEnemies.push(roach1);
 // Place the player object in a variable called player
-const player = new Player();
+const player = new Player(200,370);
 
 
 
