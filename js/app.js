@@ -58,7 +58,7 @@ Player.prototype.update = function() {
 		}
 		if(this.y === (this.starty - (this.climb*5))){
 			setTimeout(function won(){
-				alert('Won');
+				alert('Game Won.Click Ok to Play Again');
 			},1);
 			this.reset();
 		}
