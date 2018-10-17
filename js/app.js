@@ -5,7 +5,7 @@ let Enemy = function(x,y,speed) {
 		this.x=x;
 		this.y=y;
 		this.height=60;
-		this.width=90;
+		this.width=60;
 		this.end=505;
 		this.start=-99;
 		this.speed=speed;
@@ -17,9 +17,7 @@ let Enemy = function(x,y,speed) {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-		// You should multiply any movement by the dt parameter
-		// which will ensure the game runs at the same speed for
-		// all computers.
+		//Bugs speed Logic
 		if(this.x<this.end){
 			this.x+=15*this.speed*dt
 		}
@@ -50,12 +48,14 @@ let Player=function(x,y){
 };
 
 Player.prototype.update = function() {
+	//Collision Detection logic
 	for(let enemy of allEnemies){
 			if(this.x < enemy.x + enemy.width  && this.x + this.width  > enemy.x &&
 				this.y < enemy.y + enemy.height && this.y + this.height > enemy.y){
 					this.reset();
 				}
 		}
+		//Alert when you win the game
 		if(this.y === (this.starty - (this.climb*5))){
 			setTimeout(function won(){
 				alert('Game Won.Click Ok to Play Again');
@@ -64,10 +64,13 @@ Player.prototype.update = function() {
 		}
  };
 
+//Player position reset logic
  Player.prototype.reset = function() {
 	 this.x=this.startx;
 	 this.y=this.starty;
  };
+
+ //Player movement logic
 Player.prototype.handleInput=function(k){
 		switch(k){
 			case 'left':
@@ -105,7 +108,6 @@ Player.prototype.handleInput=function(k){
 			}
 };
 
-
 Player.prototype.render = function() {
 		ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
@@ -117,6 +119,7 @@ const roach2 = new Enemy(-200,145,40);
 const roach3 = new Enemy(-99,228,20);
 const roach4 = new Enemy(-139,62,20);
 
+//Enemies array
 var allEnemies = [];
 allEnemies.push(roach1);
 allEnemies.push(roach2);
